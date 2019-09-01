@@ -1,7 +1,7 @@
 require 'pry'
 class Cult
 
-    attr_reader :name, :location, :founding_year, :slogan
+    attr_reader :name, :location, :founding_year, :slogan, :minimum_age
 
     @@all = []
 
@@ -10,6 +10,7 @@ class Cult
         @location = location
         @founding_year = founding_year
         @slogan = slogan
+        @minimum_age = 16
         @@all << self
     end
     
@@ -56,7 +57,11 @@ class Cult
      end
 
     def recruit_follower(initiation_date, follower_inst)
-        BloodOath.new(initiation_date ,follower_inst, self)
+        if follower_inst.age >= self.minimum_age
+            BloodOath.new(initiation_date ,follower_inst, self)
+        else
+            "Call us in a couple of years!"
+        end
     end
     
     def average_age
