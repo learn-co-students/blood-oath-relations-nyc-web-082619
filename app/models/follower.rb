@@ -17,7 +17,7 @@ class Follower
     end
 
     def self.all
-        BloodOath.map { |bloodoath| bloodoath.follower}
+        BloodOath.all.map { |bloodoath| bloodoath.follower}
     end
 
     def self.of_a_certain_age(age)

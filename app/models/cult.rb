@@ -1,13 +1,12 @@
 require 'pry'
 class Cult
-    attr_accessor :name, :location, :founding_year, :slogan, :cult_population
+    attr_accessor :name, :location, :founding_year, :slogan
     
-    def initialize(name, location, founding_year, slogan, cult_population)
+    def initialize(name, location, founding_year, slogan)
         @name = name
         @location = location
         @founding_year = founding_year
         @slogan = slogan
-        @cult_population = cult_population
     end
 
     def recruit_follower(follower)
@@ -15,7 +14,13 @@ class Cult
     end
 
     def self.all 
-        BloodOath.all.select { |bloodOath| bloodOath.cult == self }
+        BloodOath.all.map { |bloodOath| bloodOath.cult }
+    end
+    
+    def cult_population
+      bloodOathThisCult = BloodOath.all.select { |bloodOath| bloodOath.cult == self } 
+      cultFollowers = bloodOathThisCult.map { |bloodOath| bloodOath.follower }
+      cultFollowers.count
     end
 
     def self.find_by_name(name)
@@ -24,11 +29,13 @@ class Cult
     end
 
     def self.find_by_location(location)
-        BloodOath.all.find { |bloodOath| bloodOath.cult.location == location }
+        bloodOathLocation = BloodOath.all.select { |bloodOath| bloodOath.cult.location == location }
+        bloodOathLocation.map { |bloodOath| bloodOath.cult }
     end
 
     def self.find_by_founding_year(year)
-        BloodOath.all.select { |bloodOath| bloodOath.cult.founding_year == year}
+        bloodOathYear = BloodOath.all.select { |bloodOath| bloodOath.cult.founding_year == year}
+        bloodOathYear.map { |bloodOath| bloodOath.cult }
     end
 
 
