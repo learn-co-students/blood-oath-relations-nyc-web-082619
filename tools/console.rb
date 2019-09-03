@@ -10,11 +10,11 @@ jallen = Follower.new("Jallen", "26", "Satoshi is Female")
 
 chipotle = Cult.new("Chipotle", "Denver", "1993", "Food with Integrity")
 shake_shack = Cult.new("Shake Shack", "New York", "2008", "Shaken not Shacked")
-mcdonalds = Cult.new("McDonalds", "California", "1954", "Lie to Children")
+mcdonalds = Cult.new("McDonalds", "Denver", "1954", "Lie to Children")
 
-oath1 = Oath.new("1983", rj, mcdonalds)
-oath2 = Oath.new("1996", wilf, mcdonalds)
-oath3 = Oath.new("2013", jallen, chipotle)
+oath1 = Oath.new("2083-12-06", rj, mcdonalds)
+oath2 = Oath.new("1996-06-07", wilf, mcdonalds)
+oath3 = Oath.new("2013-02-14", jallen, chipotle)
 
 
 
