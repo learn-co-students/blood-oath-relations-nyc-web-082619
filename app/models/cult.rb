@@ -37,6 +37,18 @@ class Cult
         bloodOathYear = BloodOath.all.select { |bloodOath| bloodOath.cult.founding_year == year}
         bloodOathYear.map { |bloodOath| bloodOath.cult }
     end
+    
+    def allMyBloodOath
+      BloodOath.all.select { |bloodOath| bloodOath.cult == self }
+    end
+    
+    def average_age
+      allFollower = self.allMyBloodOath.map { |bloodOath| bloodOath.follower }
+      numOfFollower = allFollower.count
+      allAge = allFollower.map { |follower| follower.age } 
+      totalAge = allAge.sum 
+      aveAge = totalAge.to_f / numOfFollower.to_f 
+    end
 
 
 end
