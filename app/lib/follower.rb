@@ -12,5 +12,23 @@ class Follower
     def self.all
         @@all
     end
+
+    def oaths
+        Oath.all.select{|oath|oath.follower == self}
+    end
+
+    def cults
+        multiple_arr = oaths.map{|oath|oath.cult}
+        multiple_arr.flatten
+    end
+
+    def join_cult(cult, year=2019)
+        Oath.new(year.to_s, self, cult)
+    end
+
+    def self.of_a_certain_age(age)
+        self.all.select{|follower| follower.age.to_i >= age}
+    end
+
 end
 
