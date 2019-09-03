@@ -41,13 +41,25 @@ class Cult
     def allMyBloodOath
       BloodOath.all.select { |bloodOath| bloodOath.cult == self }
     end
+
+    def allMyFollowers
+        self.allMyBloodOath.map { |bloodOath| bloodOath.follower }
+    end
     
     def average_age
-      allFollower = self.allMyBloodOath.map { |bloodOath| bloodOath.follower }
+      allFollower = self.allMyFollowers
       numOfFollower = allFollower.count
       allAge = allFollower.map { |follower| follower.age } 
       totalAge = allAge.sum 
       aveAge = totalAge.to_f / numOfFollower.to_f 
+    end
+
+    def my_followers_mottos
+        self.allMyFollowers.each { |follower| puts follower.life_motto}
+    end
+
+    def self.least_popular
+        
     end
 
 
