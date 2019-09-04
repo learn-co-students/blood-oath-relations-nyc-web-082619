@@ -53,14 +53,35 @@ class Cult
       totalAge = allAge.sum 
       aveAge = totalAge.to_f / numOfFollower.to_f 
     end
+    
 
     def my_followers_mottos
         self.allMyFollowers.each { |follower| puts follower.life_motto}
     end
 
     def self.least_popular
+        least_follower_bloodOath =  BloodOath.all.min_by { |blood| blood.cult.allMyFollowers.count }
+        least_follower_bloodOath.cult
+    end
+    
+    def self.popularity_of_location
+      common_location = {}
+      self.all.each do |cult| 
+  
+        if common_location[cult.location]
+          common_location[cult.location] += 1 
         
+        else 
+          common_location[cult.location] = 1 
+        end
+      end
+      common_location
+    end
+    
+    def self.most_common_location
+      popular_locaiton = self.popularity_of_location.max_by { |k,v| v }
+      popular_locaiton[0]
     end
 
 
-end
+end # End of Cult class
