@@ -10,7 +10,12 @@ class Cult
     end
 
     def recruit_follower(follower)
+      if follower.age < minimum_age
+        puts "Sorry! follwer age #{follower.age} is belowMinimum age (18)"
+      else
         BloodOath.new(follower, self) 
+      end
+
     end
 
     def self.all 
@@ -44,6 +49,10 @@ class Cult
 
     def allMyFollowers
         self.allMyBloodOath.map { |bloodOath| bloodOath.follower }
+    end
+
+    def minimum_age
+      18
     end
     
     def average_age

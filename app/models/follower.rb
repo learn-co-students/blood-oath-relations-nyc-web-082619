@@ -20,6 +20,17 @@ class Follower
       self.cults.each { |cult| puts cult.slogan }
       nil 
     end
+
+    def fellow_cult_members
+      all_fellow_cult_members = []
+      BloodOath.all.each do |bloodoath| 
+        if cults.include?(bloodoath.cult)
+          all_fellow_cult_members << bloodoath.follower
+        end
+      end
+      all_fellow_cult_members
+      
+    end
     
     def self.follower_popularity 
       follower_with_popularity = {}
