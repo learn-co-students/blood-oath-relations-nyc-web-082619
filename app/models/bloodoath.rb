@@ -5,7 +5,7 @@ class BloodOath
 
     @@all = []
 
-    def initialize(cult, follower)
+    def initialize(initiation_date, cult, follower)
         @cult = cult
         @follower = follower
         @initiation_date = initiation_date
@@ -14,5 +14,9 @@ class BloodOath
 
     def self.all
         @@all
+    end
+    
+    def self.first_oath
+        self.all.sort_by { |oath| oath.initiation_date }.first
     end
 end
