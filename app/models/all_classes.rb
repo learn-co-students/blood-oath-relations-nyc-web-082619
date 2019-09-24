@@ -203,4 +203,30 @@ class Cult
   
   end
   
-  
+def my_movies
+    Role.all.select{|role|role.movie==self}
+end
+
+def cast
+    my_movies.map{|role|role.actor}
+end
+
+
+def credits
+    credits = {}
+    my_movies.each do |role|
+        credits.[role.movie.title] = role.actor.full_name
+    end
+    credits
+end
+
+def self.all
+@@all
+end
+
+def self.find_by_year(year)
+Movie.all.select{|movie|movie.year}
+end
+
+
+end
